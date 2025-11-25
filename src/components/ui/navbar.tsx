@@ -11,6 +11,7 @@ export default function Navbar() {
       <Link href={'/'} className='text-2xl font-bold'>
         Event Org.
       </Link>
+      
       <Link href={'/login'}>
         login
       </Link>

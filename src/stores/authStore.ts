@@ -4,7 +4,7 @@ interface IAuthStore {
   email: string;
   isLoggedIn: boolean;
   role: string;
-
+  
   onLogin: (email: string, role: string) => void;
   onLogout: () => void;
 }
