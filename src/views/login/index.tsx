@@ -1,0 +1,70 @@
+'use client';
+
+import { Formik, Form, FormikProps } from 'formik';
+import { useSnackbar } from 'notistack';
+import { useRouter } from 'next/router';
+import LoginSchema from './schema';
+import useAuthStore from '@/src/stores/authStore';
+
+
+interface ILogin {
+  email: string;
+  password: string;
+}
+
+export default function LoginView() {
+  const initVal = { email: '', password: '' };
+  const { enqueueSnackbar } = useSnackbar();
+  const router = useRouter();
+  return (
+    <div>
+      <h1>Login page</h1>
+      <Formik<ILogin>
+        initialValues={initVal}
+        onSubmit={async (values) => {
+          try {
+            //
+            router.push("/");
+          } catch (error) {
+            if (error instanceof Error) {
+              enqueueSnackbar(error.message, { variant: 'error' });
+            } else {
+              console.log(error);
+              enqueueSnackbar('Something went wrong', { variant: 'error' });
+            }
+          }
+        }}
+      >
+        {(props: FormikProps<ILogin>) => (
+          <Form>
+            <div>
+              <label htmlFor=''>Email</label>
+              <input
+                type='text'
+                name='email'
+                value={props.values.email}
+                onChange={props.handleChange}
+              />
+            </div>
+
+            <div>
+              <label htmlFor=''>Password</label>
+              <input
+                type='password'
+                name='password'
+                value={props.values.password}
+                onChange={props.handleChange}
+              />
+            </div>
+            {props.touched.password && props.errors.password && (
+              <span>*{props.errors.password}</span>
+            )}
+            <div>
+              <button type='submit'>Login</button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+}

@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
 
-import AuthSessionProvider from '../providers/authSessionProvider';
-import AuthWatcher from '../components/authWatcher';
+import AuthSessionProvider from '../../providers/authSessionProvider';
+import AuthWatcher from '../../components/authWatcher';
 
 const poppins = Poppins({
   subsets: ['latin'],
