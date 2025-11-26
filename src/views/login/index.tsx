@@ -3,14 +3,10 @@
 import { Formik, Form, FormikProps } from 'formik';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/router';
+import { ILogin } from '@/src/interfaces/login.interface';
 import LoginSchema from './schema';
 import useAuthStore from '@/src/stores/authStore';
 
-
-interface ILogin {
-  email: string;
-  password: string;
-}
 
 export default function LoginView() {
   const initVal = { email: '', password: '' };
