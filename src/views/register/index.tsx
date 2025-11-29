@@ -1,17 +1,17 @@
 'use client';
 
 import { Formik, Form, FormikProps } from 'formik';
-
 import { useSnackbar } from 'notistack';
 import RegisterSchema from './schema';
-import { useRouter } from 'next/router';
 import { IRegister } from '@/src/interfaces/register.interface';
 import { verificationLinkService } from '@/src/services/auth';
+
+import { DropdownMenu,DropdownMenuItem,DropdownMenuContent,DropdownMenuTrigger, DropdownMenuSeparator,DropdownMenuLabel } from '@radix-ui/react-dropdown-menu';
 
 export default function RegView() {
   const initVal = { name: '', email: '', password: '', role: '' };
   const { enqueueSnackbar } = useSnackbar();
-  const router = useRouter();
+ 
 
   async function handleSubmit(values: IRegister) {
     try {
@@ -28,7 +28,9 @@ export default function RegView() {
   }
 
   return (
-    <Formik<IRegister>
+    <div>
+      <h1>Register</h1>
+      <Formik<IRegister>
       initialValues={initVal}
       validationSchema={RegisterSchema}
       onSubmit={handleSubmit}
@@ -36,7 +38,7 @@ export default function RegView() {
       {(props: FormikProps<IRegister>) => (
         <Form className=''>
           <div className=''>
-            <label>Email:</label>
+            <label htmlFor=''>Email:</label>
             <input
               className='rounded-md border p-2'
               type='email'
@@ -50,18 +52,28 @@ export default function RegView() {
           </div>
           <div>
             <label htmlFor="">Password:</label>
-            <input type="password"
+            <input 
+            className='rounded-md border p-2'
+            type="password"
             name='password'
             value={props.values.password} 
             onChange={props.handleChange}/>
           </div>
           <div>
-            
+            <DropdownMenu>
+              <DropdownMenuTrigger>Role</DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>Costumer</DropdownMenuItem>
+                <DropdownMenuItem>Event Organizer</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
           
           <button type='submit'>Register</button>
         </Form>
       )}
     </Formik>
+    </div>
+    
   );
 }

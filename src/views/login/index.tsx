@@ -2,16 +2,16 @@
 
 import { Formik, Form, FormikProps } from 'formik';
 import { useSnackbar } from 'notistack';
-import { useRouter } from 'next/router';
 import { ILogin } from '@/src/interfaces/login.interface';
 import LoginSchema from './schema';
-import useAuthStore from '@/src/stores/authStore';
+import { login } from '@/src/services/auth';
+import { loginService } from '@/src/stores/authStore';
+
 
 
 export default function LoginView() {
   const initVal = { email: '', password: '' };
   const { enqueueSnackbar } = useSnackbar();
-  const router = useRouter();
   return (
     <div>
       <h1>Login page</h1>
@@ -20,7 +20,8 @@ export default function LoginView() {
         onSubmit={async (values) => {
           try {
             //
-            router.push("/");
+
+
           } catch (error) {
             if (error instanceof Error) {
               enqueueSnackbar(error.message, { variant: 'error' });
