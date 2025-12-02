@@ -18,6 +18,10 @@ import {
 export default function RegView() {
   const initVal = { name: '', email: '', password: '', role: '' };
   const { enqueueSnackbar } = useSnackbar();
+  const roles = [
+    { value: 'customer', label: 'Customer' },
+    { value: 'eventOrganizer', label: 'Event Organizer' },
+  ];
 
   async function handleSubmit(values: IRegister) {
     try {
@@ -35,7 +39,6 @@ export default function RegView() {
 
   return (
     <div>
-      
       <Formik<IRegister>
         initialValues={initVal}
         validationSchema={RegisterSchema}
@@ -43,6 +46,17 @@ export default function RegView() {
       >
         {(props: FormikProps<IRegister>) => (
           <Form className='flex flex-col gap-3'>
+            <div className='flex flex-col gap-3'>
+              <label htmlFor=''>Name:</label>
+              <input
+                className='rounded-md border p-2'
+                type='text'
+                name='name'
+                value={props.values.name}
+                onChange={props.handleChange}
+              />
+            </div>
+
             <div className='flex flex-col gap-3'>
               <label htmlFor=''>Email:</label>
               <input
@@ -56,6 +70,7 @@ export default function RegView() {
                 <span>*{props.errors.email}</span>
               )}
             </div>
+
             <div>
               <label htmlFor=''>Password:</label>
               <input
@@ -66,14 +81,28 @@ export default function RegView() {
                 onChange={props.handleChange}
               />
             </div>
-            <div>
-              <DropdownMenu>
-                <DropdownMenuTrigger>Role</DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem>Costumer</DropdownMenuItem>
-                  <DropdownMenuItem>Event Organizer</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+
+            <div className='flex flex-col gap-2'>
+              <label htmlFor='role'>Register as:</label>
+
+              <select
+                name='role'
+                value={props.values.role}
+                onChange={props.handleChange}
+                className='cursor-pointer appearance-none rounded-md border p-2'
+              >
+                <option value=''>Select a role</option>
+                <option value='customer'>Customer</option>
+                <option value='eventOrganizer'>Event Organizer</option>
+              </select>
+              {props.values.role && (
+                <div className='mt-1 text-sm text-gray-600'>
+                  Selected:{' '}
+                  {props.values.role === 'customer'
+                    ? 'Customer'
+                    : 'Event Organizer'}
+                </div>
+              )}
             </div>
 
             <button type='submit'>Register</button>
