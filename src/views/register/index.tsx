@@ -6,12 +6,18 @@ import RegisterSchema from './schema';
 import { IRegister } from '@/src/interfaces/register.interface';
 import { verificationLinkService } from '@/src/services/auth';
 
-import { DropdownMenu,DropdownMenuItem,DropdownMenuContent,DropdownMenuTrigger, DropdownMenuSeparator,DropdownMenuLabel } from '@radix-ui/react-dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+  DropdownMenuLabel,
+} from '@radix-ui/react-dropdown-menu';
 
 export default function RegView() {
   const initVal = { name: '', email: '', password: '', role: '' };
   const { enqueueSnackbar } = useSnackbar();
- 
 
   async function handleSubmit(values: IRegister) {
     try {
@@ -29,51 +35,51 @@ export default function RegView() {
 
   return (
     <div>
-      <h1>Register</h1>
+      
       <Formik<IRegister>
-      initialValues={initVal}
-      validationSchema={RegisterSchema}
-      onSubmit={handleSubmit}
-    >
-      {(props: FormikProps<IRegister>) => (
-        <Form className=''>
-          <div className=''>
-            <label htmlFor=''>Email:</label>
-            <input
-              className='rounded-md border p-2'
-              type='email'
-              name='email'
-              value={props.values.email}
-              onChange={props.handleChange}
-            />
-            {props.touched.email && props.errors.email && (
-              <span>*{props.errors.email}</span>
-            )}
-          </div>
-          <div>
-            <label htmlFor="">Password:</label>
-            <input 
-            className='rounded-md border p-2'
-            type="password"
-            name='password'
-            value={props.values.password} 
-            onChange={props.handleChange}/>
-          </div>
-          <div>
-            <DropdownMenu>
-              <DropdownMenuTrigger>Role</DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>Costumer</DropdownMenuItem>
-                <DropdownMenuItem>Event Organizer</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-          
-          <button type='submit'>Register</button>
-        </Form>
-      )}
-    </Formik>
+        initialValues={initVal}
+        validationSchema={RegisterSchema}
+        onSubmit={handleSubmit}
+      >
+        {(props: FormikProps<IRegister>) => (
+          <Form className='flex flex-col gap-3'>
+            <div className='flex flex-col gap-3'>
+              <label htmlFor=''>Email:</label>
+              <input
+                className='rounded-md border p-2'
+                type='email'
+                name='email'
+                value={props.values.email}
+                onChange={props.handleChange}
+              />
+              {props.touched.email && props.errors.email && (
+                <span>*{props.errors.email}</span>
+              )}
+            </div>
+            <div>
+              <label htmlFor=''>Password:</label>
+              <input
+                className='rounded-md border p-2'
+                type='password'
+                name='password'
+                value={props.values.password}
+                onChange={props.handleChange}
+              />
+            </div>
+            <div>
+              <DropdownMenu>
+                <DropdownMenuTrigger>Role</DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem>Costumer</DropdownMenuItem>
+                  <DropdownMenuItem>Event Organizer</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            <button type='submit'>Register</button>
+          </Form>
+        )}
+      </Formik>
     </div>
-    
   );
 }
