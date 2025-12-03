@@ -1,4 +1,4 @@
-import { getArticleBySlug } from "@/services/article";
+import { getEventBySlug } from "@/src/services/event";
 
 export default async function ArticleDetail({
   params,
@@ -6,13 +6,14 @@ export default async function ArticleDetail({
   params: { slug: string };
 }) {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const event = await getEventBySlug(slug);
 
-  console.log(article);
+  console.log(event);
   return (
     <div>
-      <img src={article.image_path} />
-      <div>{article.title}</div>
+      <div>
+        <h1>event</h1>
+      </div>
     </div>
   );
 }
