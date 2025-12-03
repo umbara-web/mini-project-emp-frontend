@@ -4,7 +4,7 @@ export default function Register() {
   return (
     <html>
       <body>
-        <div className='justify-center'>
+        <div className=''>
           <h1>Register</h1>
           <RegView />
         </div>
