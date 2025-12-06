@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0%" stop-color="#6C5CE7" />
+      <stop offset="100%" stop-color="#4F46E5" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)" />
+  <g fill="#ffffff" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="48">
+    <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle">Event Image</text>
+    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="20" font-weight="500">Placeholder artwork</text>
+  </g>
+</svg>

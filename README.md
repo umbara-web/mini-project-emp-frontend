@@ -1,4 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Frontend MVP (Event Management)
+
+Quick start (frontend only):
+
+1. Install deps
+
+```bash
+cd frontend
+npm install
+```
+
+2. Run dev server
+
+```bash
+npm run dev
+```
+
+What I added (frontend):
+
+- Landing page with search and event list (debounced search hook).
+- Event detail page with purchase button and 2-hour upload countdown UI.
+- Create event page for organizers (mocked create).
+- Basic dashboard for organizers with event list and stats placeholder.
+- Mock API in `src/lib/api.ts` to provide demo data.
+- `useAuth` mock provider for role-based UI testing.
+- Confirmation dialog patterns and responsive layouts using Tailwind CSS.
+- Unit tests stubs for `useDebounce` and `SearchBar` (`src/__tests__`).
+
+Notes & next steps:
+
+- Tests require adding `jest` and `@testing-library/react` dependencies and config.
+- Wire up real API endpoints and secure protected routes using `useAuth` and NextAuth for production.
+- Add SQL transaction logic and backend integration for purchase flow, expiry jobs, and email notifications.
+  This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 

@@ -5,6 +5,8 @@ import './globals.css';
 
 import AuthSessionProvider from '../providers/authSessionProvider';
 import AuthWatcher from '../components/authWatcher';
+import Footer from '../components/Footer';
+import { AppProvider } from '../components/Store';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -26,10 +28,13 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={clsx(poppins.variable, 'antialiased')}>
-        <AuthSessionProvider>
-          {children}
-          <AuthWatcher />
-        </AuthSessionProvider>
+        <AppProvider>
+          <AuthSessionProvider>
+            {children}
+            {/* <Footer /> */}
+            <AuthWatcher />
+          </AuthSessionProvider>
+        </AppProvider>
       </body>
     </html>
   );
